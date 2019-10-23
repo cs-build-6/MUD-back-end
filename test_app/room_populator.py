@@ -297,7 +297,7 @@ def pop_db(x_dims = 10, y_dims = 8, floors = 8, stairwell = [5,5],max_room_items
                 #   new_item.save()
                 # r.roomitemsids = item_list
                 # r.save()
-def pop_items(n):
+def pop_items(n=100):
   """creates n items"""
   for i in range(n):
     my_set = item_set()

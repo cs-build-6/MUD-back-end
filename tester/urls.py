@@ -16,11 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from test_app.views import *
+from test_app.room_populator import *
 
 from graphene_django.views import GraphQLView
 
 urlpatterns = [
     path('', startuptest, name = 'startupscreen'),
+    path('makeworld', pop_db, 'makenewworld'),
+    path('makeitems', pop_items, 'makenewitems'),
     path('admin/', admin.site.urls),
     path('graphql/', GraphQLView.as_view(graphiql=True))
 ]
