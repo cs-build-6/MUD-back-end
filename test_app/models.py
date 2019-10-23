@@ -24,6 +24,7 @@ class Room_DB(models.Model):
     region = models.CharField(max_length = 50)
     title = models.CharField(max_length = 50)
     roomitemsids = models.CharField(max_length = 100,null=True)
+    playerNames = models.CharField(max_length = 100,null=True)
 
 class Item_DB(models.Model):
     id = models.AutoField(primary_key=True)
