@@ -1,4 +1,4 @@
-weapons = ['dagger', 'katana', 'knife', 'longsword', 'sabre', 'shortsword'
+weapons = ['dagger', 'katana', 'knife', 'longsword', 'sabre', 'shortsword',
             'rapier', 'battle axe','club','flail','mace','quarterstaff','war hammer',
             'yo-yo','frisbee', 'boomerang']
 
@@ -13,12 +13,14 @@ nouns = weapons + wearables
 
 import random
 class item:
-  def __init__(self, name=None, skill = None, item_room = None, owner = None):
+  def __init__(self, noun=None, skill = None, item_room = None, owner = None):
     self.id = id
-    self.name = name
+    self.noun = noun
     self.skill = skill
     self.item_room = item_room
     self.owner = owner 
+
+  
 
 class item_set:
   def __init__(self):
