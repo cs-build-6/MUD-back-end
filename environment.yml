@@ -33,15 +33,21 @@ dependencies:
   - wincertstore=0.2=py37_0
   - pip:
     - aniso8601==7.0.0
+    - defusedxml==0.6.0
     - dj-database-url==0.5.0
+    - django-allauth==0.40.0
     - django-heroku==0.3.1
+    - django-rest-auth==0.9.5
     - graphene==2.1.8
     - graphene-django==2.6.0
     - graphql-core==2.2.1
     - graphql-relay==2.0.0
     - gunicorn==19.9.0
+    - oauthlib==3.1.0
     - promise==2.2.1
     - psycopg2==2.8.4
+    - python3-openid==3.1.0
+    - requests-oauthlib==1.2.0
     - rx==1.6.1
     - singledispatch==3.4.0.3
     - six==1.12.0
