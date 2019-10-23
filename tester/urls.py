@@ -14,11 +14,24 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf.urls import url, include
+from test_app.views import *
+from graphene_django.views import GraphQLView
+from django.views.decorators.csrf import csrf_exempt
+from test_app.api import *
 
 from graphene_django.views import GraphQLView
 
 urlpatterns = [
+    url('init', initialize),
+    url('move', move),
+    path('', include('rest_auth.urls')),
+    path('registration/', include('rest_auth.registration.urls')),
+    #path('', startuptest, name = 'startupscreen'),
+    path('makeworld/', makeworld, name = 'makenewworld'),
+    path('makeitems/', makeitems, name = 'makenewitems'),
     path('admin/', admin.site.urls),
-    path('graphql/', GraphQLView.as_view(graphiql=True))
+    #path('graphql/', GraphQLView.as_view(graphiql=True))
+    path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True)))
 ]

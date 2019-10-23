@@ -1,6 +1,7 @@
 import random
 from test_app.region_dicts import *
 from test_app.models import *
+from test_app.items import *
 
 class Room:
   def __init__(self, x = 0, y = 0, floor = 0, visited = 0):
@@ -253,7 +254,7 @@ class World:
         self.grid[f][stairwell[1]][stairwell[0]].connect_rooms(self.grid[f+1][stairwell[1]][stairwell[0]])
 
 
-def pop_db(x_dims = 10, y_dims = 8, floors = 8, stairwell = [5,5]):
+def pop_db(x_dims = 10, y_dims = 8, floors = 8, stairwell = [5,5],max_room_items = 3):
     my_world = World(x_dims,y_dims,floors)
     my_plot_list = my_world.make_path()
     my_world.join_floors(stairwell)
@@ -286,3 +287,24 @@ def pop_db(x_dims = 10, y_dims = 8, floors = 8, stairwell = [5,5]):
                             region = r.region,
                             title = r.title)
                 r.save()
+                # number_of_items = random.choice(range(max_room_items+1))
+                # new_set = item_set()
+                # new_set.gen_n_items(number_of_items)
+                # item_list = []
+                # for val in new_set.item_dict.values():
+                #   new_item = Item_DB(id = id, noun = val.name, skill = val.skill,item_room=r.coords)
+                #   item_list.append(new_item.id)
+                #   new_item.save()
+                # r.roomitemsids = item_list
+                # r.save()
+def pop_items(n=100):
+  """creates n items"""
+  for i in range(n):
+    my_set = item_set()
+    my_set.gen_item()
+    v = list(my_set.item_dict.values())[0]
+    new_item = Item_DB(noun =v.noun, skill = v.skill )
+    print(new_item.id,new_item.noun,new_item.skill)
+    new_item.save()
+
+
