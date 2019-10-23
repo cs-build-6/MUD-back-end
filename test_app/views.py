@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from test_app.room_populator import *
+from test_app.models import *
+
 
 # Create your views here.
 def startuptest(request):
