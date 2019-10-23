@@ -1,4 +1,4 @@
-name: django_env
+name: dj_env
 channels:
   - anaconda
   - conda-forge
@@ -25,9 +25,10 @@ dependencies:
     - graphene-django==2.6.0
     - graphql-core==2.2.1
     - graphql-relay==2.0.0
+    - gunicorn==19.9.0
     - promise==2.2.1
     - rx==1.6.1
     - singledispatch==3.4.0.3
     - six==1.12.0
-prefix: C:\Users\DH\AppData\Local\Continuum\anaconda3\envs\django_env
+prefix: C:\Users\danie\Anaconda3\envs\dj_env
 
