@@ -28,7 +28,7 @@ urlpatterns = [
     url('move', move),
     path('', include('rest_auth.urls')),
     path('registration/', include('rest_auth.registration.urls')),
-    #path('', startuptest, name = 'startupscreen'),
+    path('', startuptest, name = 'startupscreen'),
     path('makeworld/', makeworld, name = 'makenewworld'),
     path('makeitems/', makeitems, name = 'makenewitems'),
     path('admin/', admin.site.urls),
