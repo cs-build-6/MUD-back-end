@@ -23,10 +23,10 @@ class Room_DB(models.Model):
 
 class Item_DB(models.Model):
     id = models.AutoField(primary_key=True)
-    noun = models.CharField(max_length = 20)
-    skill = models.CharField(max_length = 20)
-    item_room = models.CharField(max_length = 20,null=True)
-    item_owner = models.CharField(max_length = 20,null=True)
+    noun = models.CharField(max_length = 50)
+    skill = models.CharField(max_length = 50)
+    item_room = models.CharField(max_length = 50,null=True)
+    item_owner = models.CharField(max_length = 50,null=True)
 
 
 
