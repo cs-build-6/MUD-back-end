@@ -1,1 +1,1 @@
-web: gunicorn test_app:APP -t 120
+web: gunicorn tester.wsgi:application --log-file -
