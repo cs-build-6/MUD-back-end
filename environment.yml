@@ -21,14 +21,18 @@ dependencies:
   - wincertstore=0.2=py37_0
   - pip:
     - aniso8601==7.0.0
+    - dj-database-url==0.5.0
+    - django-heroku==0.3.1
     - graphene==2.1.8
     - graphene-django==2.6.0
     - graphql-core==2.2.1
     - graphql-relay==2.0.0
     - gunicorn==19.9.0
     - promise==2.2.1
+    - psycopg2==2.8.4
     - rx==1.6.1
     - singledispatch==3.4.0.3
     - six==1.12.0
+    - whitenoise==4.1.4
 prefix: C:\Users\danie\Anaconda3\envs\dj_env
 
