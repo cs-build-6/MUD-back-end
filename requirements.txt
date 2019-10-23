@@ -1,12 +1,13 @@
 aniso8601==7.0.0
 asn1crypto==1.2.0
-certifi==2019.9.11
+certifi==2019.6.16
 cffi==1.12.3
 chardet==3.0.4
 cryptography==2.7
 dj-database-url==0.5.0
 Django==2.2.5
 django-heroku==0.3.1
+djangorestframework==3.10.3
 graphene==2.1.8
 graphene-django==2.6.0
 graphql-core==2.2.1
