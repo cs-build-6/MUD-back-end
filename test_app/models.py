@@ -24,7 +24,14 @@ class Room_DB(models.Model):
     region = models.CharField(max_length = 50)
     title = models.CharField(max_length = 50)
     roomitemsids = models.CharField(max_length = 100,null=True)
-    playerNames = models.CharField(max_length = 100,null=True)
+    # playerNames = models.CharField(max_length = 100,null=True)
+    def playerNames(self, currentPlayerID):
+        return [p.user.username for p in Player.objects.filter(currentRoom=self.id) if p.id != int(currentPlayerID)]
+        
+    def playerUUIDs(self, currentPlayerID):
+        return [p.uuid for p in Player.objects.filter(currentRoom=self.id) if p.id != int(currentPlayerID)]
+
+
 
 class Item_DB(models.Model):
     id = models.AutoField(primary_key=True)
@@ -35,13 +42,16 @@ class Item_DB(models.Model):
 
 
 class Player(models.Model):
+    # id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     currentRoom = models.IntegerField(default=0)
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
+
     def initialize(self):
         if self.currentRoom == 0:
             self.currentRoom = Room_DB.objects.first().id
             self.save()
+
     def room(self):
         try:
             return Room_DB.objects.get(id=self.currentRoom)

@@ -308,3 +308,7 @@ def pop_items(n=100):
     new_item.save()
 
 
+# if __name__ == '__main__':
+#   print('main')
+#   pop_db()
+
