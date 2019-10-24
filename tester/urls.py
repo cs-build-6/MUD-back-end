@@ -24,13 +24,14 @@ from test_app.api import *
 from graphene_django.views import GraphQLView
 
 urlpatterns = [
+    url('makeitems', makeitems),
     url('init', initialize),
     url('move', move),
     path('', include('rest_auth.urls')),
     path('registration/', include('rest_auth.registration.urls')),
     #path('', startuptest, name = 'startupscreen'),
     path('makeworld/', makeworld, name = 'makenewworld'),
-    path('makeitems/', makeitems, name = 'makenewitems'),
+    # path('makeitems/', makeitems, name = 'makenewitems'),
     path('admin/', admin.site.urls),
     #path('graphql/', GraphQLView.as_view(graphiql=True))
     path('graphql/', csrf_exempt(GraphQLView.as_view(graphiql=True)))

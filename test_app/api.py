@@ -19,9 +19,9 @@ def initialize(request):
     player_id = player.id
     uuid = player.uuid
     room = player.room()
-    print(f'name: {user.username}\n')
+    # print(f'name: {user.username}\n')
     players = room.playerNames(player_id)
-    print(f'user{user}, player{player}, player{player_id}\nuuid{uuid}, room{room}, player{players}')
+    # print(f'user{user}, player{player}, player{player_id}\nuuid{uuid}, room{room}, player{players}')
     return JsonResponse({'uuid': uuid, 'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players}, safe=True)
 
 
@@ -45,8 +45,8 @@ def move(request):
         nextRoomID = room.e_to
     elif direction == "w":
         nextRoomID = room.w_to
-    if nextRoomID is not None and nextRoomID > 0:
-        nextRoom = Room.objects.get(coords=nextRoomID)   #changed id to coords
+    if nextRoomID is not None: #and nextRoomID > 0:
+        nextRoom = Room_DB.objects.get(coords=nextRoomID)   #changed id to coords
         player.currentRoom=nextRoomID
         player.save()
         players = nextRoom.playerNames(player_id)

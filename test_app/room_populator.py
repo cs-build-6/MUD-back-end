@@ -3,6 +3,7 @@ from test_app.region_dicts import *
 from test_app.models import *
 from test_app.items import *
 
+
 class Room:
   def __init__(self, x = 0, y = 0, floor = 0, visited = 0):
 
@@ -306,6 +307,27 @@ def pop_items(n=100):
     new_item = Item_DB(noun =v.noun, skill = v.skill )
     print(new_item.id,new_item.noun,new_item.skill)
     new_item.save()
+
+def assign_items(current_floor):
+  room_list = Room_DB.objects.filter(floor=current_floor)
+  room_len = len(Room_DB.objects.filter(floor=current_floor))
+  n = room_len//5
+  r_list = random.sample(set(room_list), n)
+  for r_room in r_list:
+    # assign item to rand room r
+    # r = random.randint(0,room_len)
+    my_set = item_set()
+    my_set.gen_item()
+    v = list(my_set.item_dict.values())[0]
+    new_item = Item_DB(noun =v.noun, skill = v.skill )
+    new_item.item_room = r_room.coords
+    r_room.roomitemsids = new_item.id
+    new_item.save()
+    r_room.save()
+    
+
+
+
 
 
 # if __name__ == '__main__':
