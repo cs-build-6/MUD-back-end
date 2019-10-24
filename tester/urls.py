@@ -26,6 +26,7 @@ from graphene_django.views import GraphQLView
 urlpatterns = [
     url('makeitems', makeitems),
     path('say/',say, name = 'say with pusher"'),
+    path('grid',grid, name = 'grid'),
     url('init', initialize),
     url('move', move),
     url('look', look),

@@ -107,6 +107,20 @@ def look(request):
 
 @csrf_exempt
 @api_view(["POST"])
+def grid(request):
+
+    ret_dict = {}
+    required_fields = ['x','y','floor','description','n_to','s_to','e_to','w_to','u_to','d_to','id']
+    for my_room in Room_DB.objects.all():
+        ret_dict[my_room.coords] = {}
+        for fld in required_fields:
+            ret_dict[my_room.coords][fld] = getattr(my_room,fld)
+    
+    # IMPLEMENT
+    return JsonResponse(ret_dict, safe=True)
+
+@csrf_exempt
+@api_view(["POST"])
 def pick(request):
     player = request.user.player
     player_id = player.id
