@@ -27,6 +27,7 @@ urlpatterns = [
     url('makeitems', makeitems),
     url('init', initialize),
     url('move', move),
+    url('pick', pick),
     path('', include('rest_auth.urls')),
     path('registration/', include('rest_auth.registration.urls')),
     #path('', startuptest, name = 'startupscreen'),

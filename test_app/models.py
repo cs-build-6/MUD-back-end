@@ -24,6 +24,7 @@ class Room_DB(models.Model):
     region = models.CharField(max_length = 50)
     title = models.CharField(max_length = 50)
     roomitemsids = models.CharField(max_length = 100,null=True)
+    itemdesc = models.CharField(max_length = 100,null=True)
     # playerNames = models.CharField(max_length = 100,null=True)
     def playerNames(self, currentPlayerID):
         return [p.user.username for p in Player.objects.filter(currentRoom=self.id) if p.id != int(currentPlayerID)]
@@ -46,6 +47,7 @@ class Player(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     currentRoom = models.CharField(max_length=20, null=True)
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
+    inv = models.CharField(max_length=20, null=True)
 
     def initialize(self):
         if self.currentRoom == 0:
@@ -54,7 +56,11 @@ class Player(models.Model):
 
     def room(self):
         try:
-            return Room_DB.objects.get(id=self.currentRoom)
+            if not self.currentRoom:
+                self.currentRoom = Room_DB.objects.first().coords
+                return Room_DB.objects.get(coords=self.currentRoom)
+            else:
+                return Room_DB.objects.get(coords=self.currentRoom)
         except Room_DB.DoesNotExist:
             self.initialize()
             return self.room()

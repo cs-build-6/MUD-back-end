@@ -67,3 +67,51 @@ def move(request):
 def say(request):
     # IMPLEMENT
     return JsonResponse({'error':"Not yet implemented"}, safe=True, status=500)
+
+@csrf_exempt
+@api_view(["POST"])
+def pick(request):
+    player = request.user.player
+    player_id = player.id
+    player_uuid = player.uuid
+    data = json.loads(request.body)
+    room = player.room()
+    player_inv = player.inv()
+    room_inv = room.roomitemsids
+    
+    if player_inv is None:
+        player_inv = []
+    else:
+        player_inv = [int(x) for x in player_inv.strip('][').split(', ')]
+
+    if room_inv is None:
+        room_inv = []
+    else:
+        room_inv = [int(x) for x in room_inv.strip('][').split(', ')]
+
+    pick_item = data['pick up']
+    for thing in room_inv:
+        if Item_DB.objects.get(id=thing).noun==pick_item or \
+                        f'{Item_DB.objects.get(noun=thing)} of {Item_DB.objects.get(id=thing)}'==pick_item:
+
+
+                        player_inv = player_inv + [thing]
+                        room_inv.remove(thing)
+                        room.roomitemsids = room_inv
+                        player.inv = player_inv
+                        room.itemdesc = 'You see the following objects in the room : '
+                        for r_item in room_inv:
+                            room_obj = Item_DB.objects.get(id=r_item)
+                            r_room.itemdesc = r_room.itemdesc + f'{room_obj.noun} of {room_obj.skill}, '
+                        r_room.itemdesc = r_room.itemdesc[:-2]
+                        selected_item = Item_DB.objects.get(id=thing)
+                        selected_item.item_room = None
+                        selected_item.item_owner = player_id
+                        selected_item.save()
+
+
+    room.save()
+    player.save()
+    # IMPLEMENT
+
+    return JsonResponse({'pickup':f"you picked up a {selected_item.noun}"}, safe=True, status=500)

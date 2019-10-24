@@ -321,8 +321,25 @@ def assign_items(current_floor):
     v = list(my_set.item_dict.values())[0]
     new_item = Item_DB(noun =v.noun, skill = v.skill )
     new_item.item_room = r_room.coords
-    r_room.roomitemsids = new_item.id
+    
     new_item.save()
+    print(new_item.id,new_item.noun,new_item.skill)
+    if r_room.roomitemsids:
+      try:
+        r_room.roomitemsids = [int(x) for x in r_room.roomitemsids.strip('][').split(', ')] + [(new_item.id)]
+      except:
+        r_room.roomitemsids = f'[{new_item.id}]'
+    else:
+      r_room.roomitemsids = f'[{new_item.id}]'
+    
+    #populating room item description
+
+    itemlist = [int(x) for x in str(r_room.roomitemsids).strip('][').split(', ')] 
+    item_obj_list = [Item_DB.objects.get(id=x) for x in itemlist]
+    r_room.itemdesc = 'You see the following objects in the room : '
+    for r_item in item_obj_list:
+      r_room.itemdesc = r_room.itemdesc + f'{r_item.noun} of {r_item.skill}, '
+    r_room.itemdesc = r_room.itemdesc[:-2]
     r_room.save()
     
 
