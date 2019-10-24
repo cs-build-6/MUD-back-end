@@ -70,6 +70,20 @@ def say(request):
 
 @csrf_exempt
 @api_view(["POST"])
+def look(request):
+    # IMPLEMENT
+    return JsonResponse({'name':player.user.username, 
+                            'title':room.title, 
+                            'description':room.description,
+                             'players':players, 
+                             'items available' : room.itemdesc,
+                             'floor' : room.floor,
+                             'region' : room.region,
+                             'inventory' : player.inv,
+                             'error_msg':"You cannot move that way."}, safe=True)
+
+@csrf_exempt
+@api_view(["POST"])
 def pick(request):
     player = request.user.player
     player_id = player.id
