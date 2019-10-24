@@ -23,6 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
+PUSHER_APP_ID = config('PUSHER_APP_ID')
+PUSHER_KEY = config('PUSHER_KEY')
+PUSHER_SECRET = config('PUSHER_SECRET')
+PUSHER_CLUSTER = config('PUSHER_CLUSTER')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)

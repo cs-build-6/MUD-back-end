@@ -8,6 +8,9 @@ from .models import *
 from rest_framework.decorators import api_view
 import json
 import pusher
+import os
+from tester.settings import * 
+#from tester.settings import PUSHER_KEY
 
 # instantiate pusher
 # pusher = Pusher(app_id=config('PUSHER_APP_ID'), key=config('PUSHER_KEY'), secret=config('PUSHER_SECRET'), cluster=config('PUSHER_CLUSTER'))
@@ -69,10 +72,10 @@ def say(request):
     
 
     channels_client = pusher.Pusher(
-    app_id='886771',
-    key='0609171af1b2b00ee8f0',
-    secret='f5109397c49eed39f0bc',
-    cluster='us3',
+    app_id= PUSHER_APP_ID,
+    key= PUSHER_KEY,
+    secret= PUSHER_SECRET ,
+    cluster = PUSHER_CLUSTER ,
     ssl=True
 )
     #test = JSONParser().parse(request)
