@@ -1,8 +1,31 @@
 # MUD-back-end
 
-generate world using pop_db() in the room_populator.py in test_app
-**note this must be done from teh manage.py shell or it won't work
+back-end now fully live on heroku at this link
 
-on heroku /makeworld for creating new rooms db and /makeitems for new items db
+https://danadventure.herokuapp.com/
 
-have now added a heroku request function helper curl_examples.py with some example queries
+if you want to explore the database via graphql please go to this link
+
+https://danadventure.herokuapp.com/graphql
+
+for a collection of all tested postman requests see:
+
+https://www.getpostman.com/collections/bdfde8bb9a52ec32007d
+
+# individual curls
+
+## registration
+
+curl -X POST -H "Content-Type: application/json" -d '{"username":"testuser555", "password1":"testpassword", "password2":"testpassword"}' https://dashboard.heroku.com/registration/
+
+## login 
+
+curl -X POST -H "Content-Type: application/json" -d '{"username":"testuser555", "password":"testpassword"}' https://dashboard.heroku.com/login/
+
+## init (note you need to be a super user)
+
+curl -X GET -H 'Authorization: Token 3d4ca0a2209642365a7b5ad55d9ecff2b4dd73ac' https://dashboard.heroku.com/init/
+
+## move (note only works if direction available)
+
+curl -X POST -H 'Authorization: Token 3d4ca0a2209642365a7b5ad55d9ecff2b4dd73ac' -H "Content-Type: application/json" -d '{"direction":"n"}' https://dashboard.heroku.com/move/
