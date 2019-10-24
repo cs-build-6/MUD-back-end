@@ -27,7 +27,7 @@ class Room_DB(models.Model):
     # playerNames = models.CharField(max_length = 100,null=True)
     def playerNames(self, currentPlayerID):
         return [p.user.username for p in Player.objects.filter(currentRoom=self.id) if p.id != int(currentPlayerID)]
-        
+
     def playerUUIDs(self, currentPlayerID):
         return [p.uuid for p in Player.objects.filter(currentRoom=self.id) if p.id != int(currentPlayerID)]
 
@@ -44,7 +44,7 @@ class Item_DB(models.Model):
 class Player(models.Model):
     # id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    currentRoom = models.IntegerField(default=0)
+    currentRoom = models.CharField(max_length=20, null=True)
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
 
     def initialize(self):
