@@ -71,6 +71,8 @@ def say(request):
 @csrf_exempt
 @api_view(["POST"])
 def look(request):
+    player = request.user.player
+    room = player.room()
     # IMPLEMENT
     return JsonResponse({'name':player.user.username, 
                             'title':room.title, 
