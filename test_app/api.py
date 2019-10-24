@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from .models import *
 from rest_framework.decorators import api_view
 import json
+import pusher
 
 # instantiate pusher
 # pusher = Pusher(app_id=config('PUSHER_APP_ID'), key=config('PUSHER_KEY'), secret=config('PUSHER_SECRET'), cluster=config('PUSHER_CLUSTER'))
@@ -65,8 +66,23 @@ def move(request):
 @csrf_exempt
 @api_view(["POST"])
 def say(request):
-    # IMPLEMENT
-    return JsonResponse({'error':"Not yet implemented"}, safe=True, status=500)
+    
+
+    channels_client = pusher.Pusher(
+    app_id='886771',
+    key='0609171af1b2b00ee8f0',
+    secret='f5109397c49eed39f0bc',
+    cluster='us3',
+    ssl=True
+)
+    #test = JSONParser().parse(request)
+    what_they_said = request.data
+
+    channels_client.trigger('my-channel', 'my-event',what_they_said)  #{'message': 'hello world'}
+    # '{"message" : "test message"}'
+    return JsonResponse({'success':"message sent"}, safe=True, status=500)
+    #return JsonResponse({'error':"Not yet implemented"}, safe=True, status=500)
+  
 
 @csrf_exempt
 @api_view(["POST"])
