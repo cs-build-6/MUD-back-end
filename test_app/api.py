@@ -120,8 +120,8 @@ def pick(request):
                         room.itemdesc = 'You see the following objects in the room : '
                         for r_item in room_inv:
                             room_obj = Item_DB.objects.get(id=r_item)
-                            r_room.itemdesc = r_room.itemdesc + f'{room_obj.noun} of {room_obj.skill}, '
-                        r_room.itemdesc = r_room.itemdesc[:-2]
+                            room.itemdesc = room.itemdesc + f'{room_obj.noun} of {room_obj.skill}, '
+                        room.itemdesc = room.itemdesc[:-2]
                         selected_item = Item_DB.objects.get(id=thing)
                         selected_item.item_room = None
                         selected_item.item_owner = player_id
