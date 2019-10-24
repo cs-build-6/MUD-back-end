@@ -94,7 +94,7 @@ def pick(request):
     player_uuid = player.uuid
     data = json.loads(request.body)
     room = player.room()
-    player_inv = player.inv()
+    player_inv = player.inv
     room_inv = room.roomitemsids
     
     if player_inv is None:
