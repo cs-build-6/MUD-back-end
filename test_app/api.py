@@ -73,6 +73,7 @@ def say(request):
 def look(request):
     player = request.user.player
     room = player.room()
+    player_id = player.id
     players = room.playerNames(player_id)
     # IMPLEMENT
     return JsonResponse({'name':player.user.username, 
