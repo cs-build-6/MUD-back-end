@@ -32,8 +32,8 @@ def initialize(request):
 # @csrf_exempt
 @api_view(["POST"])
 def move(request):
-    dirs={"n": "north", "s": "south", "e": "east", "w": "west"}
-    reverse_dirs = {"n": "south", "s": "north", "e": "west", "w": "east"}
+    dirs={"n": "north", "s": "south", "e": "east", "w": "west", "u" : "up", "d" : "down"}
+    reverse_dirs = {"n": "south", "s": "north", "e": "west", "w": "east", "u" : "down", "d" : "up"}
     player = request.user.player
     player_id = player.id
     player_uuid = player.uuid
@@ -49,6 +49,10 @@ def move(request):
         nextRoomID = room.e_to
     elif direction == "w":
         nextRoomID = room.w_to
+    elif direction == "u":
+        nextRoomID = room.u_to
+    elif direction == "d":
+        nextRoomID = room.d_to
     if nextRoomID is not None: #and nextRoomID > 0:
         nextRoom = Room_DB.objects.get(coords=nextRoomID)   #changed id to coords
         player.currentRoom=nextRoomID
