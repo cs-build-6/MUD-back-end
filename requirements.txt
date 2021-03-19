@@ -10,7 +10,7 @@ Django==2.2.5
 django-allauth==0.40.0
 django-heroku==0.3.1
 django-rest-auth==0.9.5
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 graphene==2.1.8
 graphene-django==2.6.0
 graphql-core==2.2.1
